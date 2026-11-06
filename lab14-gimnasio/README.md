@@ -7,7 +7,7 @@
 
 Un gimnasio necesita gestionar socios, planes y membresías. Cada entidad vive en su propio microservicio con su propia base de datos; la membresía solo guarda `idSocio` e `idPlan` y consulta a los otros dos servicios por REST.
 
-![Diagrama](docs/diagrama_microservicios.png)
+![img.png](img.png)
 
 ## Requisitos
 
