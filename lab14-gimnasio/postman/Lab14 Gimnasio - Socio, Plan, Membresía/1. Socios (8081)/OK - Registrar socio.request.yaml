@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{socioUrl}}/api/socios"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "dni": "{{dni}}",
+      "nombres": "Luis Miguel",
+      "apellidos": "Maldonado Linares",
+      "correo": "socio{{dni}}@mail.com",
+      "telefono": "987654321"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Código HTTP 201', function () { pm.response.to.have.status(201); });
+      pm.collectionVariables.set('idSocio', pm.response.json().id);
+    language: text/javascript
+order: 1000

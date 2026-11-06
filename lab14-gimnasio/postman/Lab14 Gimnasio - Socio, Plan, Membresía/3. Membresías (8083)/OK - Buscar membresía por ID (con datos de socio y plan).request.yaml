@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{membresiaUrl}}/api/membresias/{{idMembresia}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Código HTTP 200', function () { pm.response.to.have.status(200); });
+      pm.test('Incluye socio y plan', function () { const j = pm.response.json(); pm.expect(j.socio).to.not.be.null; pm.expect(j.plan).to.not.be.null; });
+    language: text/javascript
+order: 3000

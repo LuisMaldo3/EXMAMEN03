@@ -1,0 +1,11 @@
+$kind: collection
+description: Ejecutar en orden con Collection Runner. Requiere los 3 microservicios levantados (8081, 8082, 8083).
+variables:
+  socioUrl: http://localhost:8081
+  planUrl: http://localhost:8082
+  membresiaUrl: http://localhost:8083
+  dni: ""
+  sufijo: ""
+  idSocio: ""
+  idPlan: ""
+  idMembresia: ""

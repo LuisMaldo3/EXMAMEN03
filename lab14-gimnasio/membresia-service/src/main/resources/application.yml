@@ -1,0 +1,57 @@
+
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  application:
+    name: membresia-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  jpa:
+    open-in-view: false
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_membresia?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Lima
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+services:
+  socio:
+    url: http://localhost:8081
+  plan:
+    url: http://localhost:8082
+logging:
+  level:
+    com.gimnasio: DEBUG
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/bd_membresia?useSSL=true&serverTimezone=America/Lima}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none      # el esquema se crea con los scripts SQL de /scripts
+    show-sql: false
+services:
+  socio:
+    url: ${SOCIO_SERVICE_URL}
+  plan:
+    url: ${PLAN_SERVICE_URL}
+logging:
+  level:
+    com.gimnasio: INFO

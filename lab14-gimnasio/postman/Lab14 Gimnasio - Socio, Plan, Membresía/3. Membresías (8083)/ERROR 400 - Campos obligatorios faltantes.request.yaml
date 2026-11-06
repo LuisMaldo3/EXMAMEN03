@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{membresiaUrl}}/api/membresias"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "idSocio": 1
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Código HTTP 400', function () { pm.response.to.have.status(400); });
+    language: text/javascript
+order: 7000

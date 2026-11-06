@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: b79170aa-11af-4cc9-865a-987d8eb2b4d0
+
+localResources:
+  collections:
+    - ../Lab14 Gimnasio - Socio, Plan, Membresía
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/Lab14 Gimnasio - Socio, Plan, Membresía: be9fe674-bb2f-48d2-80ee-8f97c02d2cc7

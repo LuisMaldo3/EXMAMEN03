@@ -1,0 +1,14 @@
+$kind: http-request
+url: ""
+method: GET
+scripts:
+  - type: beforeRequest
+    code: |-
+      const n = String(Math.floor(10000000 + Math.random()*89999999));
+      pm.collectionVariables.set('dni', n);
+      pm.collectionVariables.set('sufijo', n);
+    language: text/javascript
+  - type: afterResponse
+    code: pm.test('Código HTTP 200', function () { pm.response.to.have.status(200); });
+    language: text/javascript
+order: 1000

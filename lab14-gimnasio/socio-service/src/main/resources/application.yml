@@ -1,0 +1,46 @@
+
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: socio-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  jpa:
+    open-in-view: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_socio?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Lima
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  level:
+    com.gimnasio: DEBUG
+
+---
+# ---------------------------- PROD ----------------------------
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/bd_socio?useSSL=true&serverTimezone=America/Lima}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none      # el esquema se crea con los scripts SQL de /scripts
+    show-sql: false
+logging:
+  level:
+    com.gimnasio: INFO

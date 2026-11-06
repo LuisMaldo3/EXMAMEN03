@@ -1,0 +1,20 @@
+$kind: http-request
+name: ERROR 400 - Datos inválidos (dni corto, correo mal, nombres vacíos)
+url: "{{socioUrl}}/api/socios"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "dni": "123",
+      "nombres": "",
+      "apellidos": "Pérez",
+      "correo": "no-es-correo"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Código HTTP 400', function () { pm.response.to.have.status(400); });
+    language: text/javascript
+order: 6000

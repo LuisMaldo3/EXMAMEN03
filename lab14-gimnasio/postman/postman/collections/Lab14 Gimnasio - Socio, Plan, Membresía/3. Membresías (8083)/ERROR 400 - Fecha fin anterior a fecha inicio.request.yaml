@@ -1,0 +1,19 @@
+$kind: http-request
+url: ""
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "idSocio": "{{idSocio}}",
+      "idPlan": "{{idPlan}}",
+      "fechaInicio": "2026-12-10",
+      "fechaFin": "2026-11-10"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Código HTTP 400', function () { pm.response.to.have.status(400); });
+    language: text/javascript
+order: 6000

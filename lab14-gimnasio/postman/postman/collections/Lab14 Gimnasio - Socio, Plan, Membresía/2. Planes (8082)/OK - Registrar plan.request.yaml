@@ -1,0 +1,21 @@
+$kind: http-request
+url: ""
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "nombre": "Plan Mensual {{sufijo}}",
+      "descripcion": "Acceso libre por 30 días",
+      "precio": 90.0,
+      "duracionDias": 30
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Código HTTP 201', function () { pm.response.to.have.status(201); });
+      pm.collectionVariables.set('idPlan', pm.response.json().id);
+    language: text/javascript
+order: 1000

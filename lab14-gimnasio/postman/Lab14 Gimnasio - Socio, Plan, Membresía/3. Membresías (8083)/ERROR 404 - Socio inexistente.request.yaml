@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{membresiaUrl}}/api/membresias"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "idSocio": 99999,
+      "idPlan": "{{idPlan}}",
+      "fechaInicio": "2026-11-10",
+      "fechaFin": "2026-12-10"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Código HTTP 404', function () { pm.response.to.have.status(404); });
+    language: text/javascript
+order: 8000
